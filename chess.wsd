@@ -1,9 +1,12 @@
 @startuml
 
 class Figure {
-    - Color
+    + Color
+    + StepCount
     - is_pass_diagonal(Square start, Square end)
     - is_pass_line(Square start, Square end)
+    - is_valid_turn(MovementContext context)
+    + ConfirmMove()
     + isValideMove(MovementContext context)
     + isValideAttack(MovementContext context)
 }
@@ -57,16 +60,17 @@ class Square{
 
 
 Interface MovementContext{
-    - current_position
-    - new_position
-    - turnColor 
-    + current_position()
-    + new_position()
-    + turnColor()
-    + isSquareEmpty(Square)
-    + isPassEmpty()
-    + isNewPositionPartnerOccupied()
-    + getFiguresOnPassAmmount()
+ 
+    + current_position() -> Square
+    + new_position() -> Square
+    + turnColor() -> Color
+    + isSquareEmpty(Square) -> bool
+    + isPassEmpty() -> bool
+    + isNewPositionPartnerOccupied() -> bool
+    + getFiguresOnPassAmmount() -> int
+    + getFigure(Square) -> Figure
+    + getPrevTurnFigure() -> Figure
+    + setEnPassantPawn(Square)
     
     
 }
