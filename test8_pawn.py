@@ -2,9 +2,9 @@ import unittest
 import io
 from Figures.Pawn import Pawn
 from Figures.Figure import Figure
-from Common.MovementContext import I_MovementContext
-from Common.Square import Square
-from Common.Color import Color
+from Core.Interfaces import I_MovementContext
+from Core.Square import Square
+from Core.Color import Color
 
 class TestContext(I_MovementContext):
     def __init__(self, start: Square, end: Square, emptyPath = True, PartnerFigureInEndPos = False) -> None:
