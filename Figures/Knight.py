@@ -1,8 +1,7 @@
-import re
-from Context.Square import Square
-from Context.Figure import Figure
-from Context.Color import Color
-from Context.MovementContext import I_MovementContext
+from Core.Square import Square
+from Core.Color import Color
+from Core.Interfaces import I_MovementContext
+from Figures.Figure import Figure
 
 class Knight(Figure):
     def __init__(self, color: Color):

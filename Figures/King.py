@@ -1,7 +1,7 @@
-from Figure import Figure
-from Common.Color import Color
-from Common.MovementContext import I_MovementContext
-from Common.Square import Square
+from Core.Square import Square
+from Core.Color import Color
+from Core.Interfaces import I_MovementContext
+from Figures.Figure import Figure
 
 
 class King(Figure):
