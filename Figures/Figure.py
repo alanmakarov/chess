@@ -1,0 +1,59 @@
+from abc import ABC, abstractmethod
+from Context.Square import Square
+from Context.MovementContext import I_MovementContext
+from Context.Color import Color
+
+
+class Figure(ABC):
+    
+    def __init__(self, color : Color):
+        self.__color = color
+        self.__stepsCount = 0
+
+    def _is_pass_diagonal(self, start: Square,end: Square) -> bool:
+
+        if start == end: 
+            return False
+
+        if start.ColIndex() - start.RowIndex() == end.ColIndex() - end.RowIndex():
+            return True
+
+        if start.ColIndex() + start.RowIndex() == end.ColIndex() + end.RowIndex():
+            return True
+
+        return False
+    
+    def _is_pass_line(self, start: Square, end: Square) -> bool:
+
+        if start == end: 
+            return False
+
+        if start.ColIndex() == end.ColIndex() or start.RowIndex() == end.RowIndex():
+            return True
+        else :
+            return False
+
+    def _is_valid_turn(self, ctx: I_MovementContext)-> bool:
+        return ctx.turnColor() == self.__color
+
+    def ConfirmMove(self):
+        self.__stepsCount +=1
+
+    @property
+    def StepsCount(self):
+        return self.__stepsCount
+
+    @property
+    def Color(self):
+        return self.__color
+
+    @abstractmethod
+    def isValideMove(self, ctx: I_MovementContext) -> bool: ...
+
+    
+    def isValideAttack(self, ctx: I_MovementContext) -> bool:
+        if ctx.isNewPositionPartnerOccupied():
+            return self.isValideMove(ctx)
+        return False
+
+
