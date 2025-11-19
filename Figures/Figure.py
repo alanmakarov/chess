@@ -5,7 +5,7 @@ from Core.Interfaces import I_Figure
 from Core.Color import Color
 
 
-class Figure(ABC, I_Figure):
+class Figure(I_Figure):
     
     def __init__(self, color : Color):
         self.__color = color
