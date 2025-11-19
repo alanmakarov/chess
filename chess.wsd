@@ -1,0 +1,74 @@
+@startuml
+
+class Figure {
+    - Color
+    - is_pass_diagonal(Square start, Square end)
+    - is_pass_line(Square start, Square end)
+    + isValideMove(MovementContext context)
+    + isValideAttack(MovementContext context)
+}
+
+Interface BoardState{
+    + bool is_empty(Square)
+    + get_figure(Square)
+    + isCheck(Color)
+    + isMat()
+    + turnColor()
+}
+
+class GameBoard extends BoardState {
+    - board_storage
+    + Move(Square start, Square end)
+}
+
+class BoardSorage {
+    + get_clone()
+    + get_figure(Square)
+    + set_figure(Square)
+    + get_line(Square start, Square end)
+    + get_diag(Square start, Square end)
+    + get_occupied_coordinates(Color)
+    + get_king_square(Color)
+}
+
+GameBoard *- BoardSorage
+Game *- GameBoard
+
+class Game{
+    - player1: Player
+    - player2: Player
+    - game_board: GameBoard
+    + add_Palyer(player: Player)
+    + start_game()
+    + make_move(player, list(start, end))
+}
+
+class Player{
+    - Color
+}
+
+class Square{
+    - char Coll
+    - int Row
+    +RowIndex()
+    +ColIndex()
+}
+
+
+
+Interface MovementContext{
+    - current_position
+    - new_position
+    - turnColor 
+    + current_position()
+    + new_position()
+    + turnColor()
+    + isSquareEmpty(Square)
+    + isPassEmpty()
+    + isNewPositionPartnerOccupied()
+    + getFiguresOnPassAmmount()
+    
+    
+}
+
+@enduml
