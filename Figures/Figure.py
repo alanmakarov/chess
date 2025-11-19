@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
-from Context.Square import Square
-from Context.MovementContext import I_MovementContext
-from Context.Color import Color
+from Core.Square import Square
+from Core.Interfaces import I_MovementContext
+from Core.Interfaces import I_Figure
+from Core.Color import Color
 
 
-class Figure(ABC):
+class Figure(ABC, I_Figure):
     
     def __init__(self, color : Color):
         self.__color = color
