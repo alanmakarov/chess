@@ -2,7 +2,7 @@ import unittest
 import io
 from Figures.King import King
 from Figures.Figure import Figure
-from Core.Interfaces import I_MovementContext
+from Core.Interfaces import I_MovementContext, I_Figure
 from Core.Square import Square
 from Core.Color import Color
 
@@ -27,7 +27,12 @@ class TestContext(I_MovementContext):
         return self._PartnerfigureInEndPos
     def getFiguresOnPassAmmount(self) -> int:
         return 1 if self._PartnerfigureInEndPos else 0
-
+    def getFigure(self, square: Square) -> I_Figure:
+        return None
+    def getPrevTurnFigure(self) -> I_Figure:
+        return None
+    def setEnPassantPawn(self, square: Square):
+        pass
     
 class TestKing(unittest.TestCase):
     def setUp(self) -> None:
