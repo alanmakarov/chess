@@ -24,7 +24,7 @@ class Square:
 
     @property 
     def x(self)-> int:
-        return self.ColIndex()
+        return self.RowIndex()
     @property
     def y(self) -> int:
-        return self.RowIndex()
+        return self.ColIndex()
