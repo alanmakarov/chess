@@ -21,3 +21,10 @@ class Square:
     
     def ColIndex(self):
         return ord(self.col)-ord('a')
+
+    @property 
+    def x(self)-> int:
+        return self.ColIndex()
+    @property
+    def y(self) -> int:
+        return self.RowIndex()
