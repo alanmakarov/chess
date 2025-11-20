@@ -49,7 +49,7 @@ class Figure(I_Figure):
         return self.__color
 
     def copy(self):
-        res = self.__class__(self.__color)
+        return self.__class__(self.__color)
 
     @abstractmethod
     def isValideMove(self, ctx: I_MovementContext) -> bool: ...
