@@ -1,26 +1,26 @@
-from Color import Color
-from Square import Square
-from Interfaces import I_Figure
+from Core.Color import Color
+from Core.Square import Square
+from Core.Interfaces import I_Figure
 from Figures.Figure import Figure
 
 class BoardStorage:
     def __init__(self, data = None) -> None:
         if isinstance(data, BoardStorage):
-            self.__matr = [ [ None if el is None else el.copy() for el in row ] for row in data.__matr]
+            self._matr = [ [ None if el is None else el.copy() for el in row ] for row in data._matr]
         elif data == None:
-            self.__matr = [[None for _ in range(8)] for _ in range(8)]
+            self._matr = [[None for _ in range(8)] for _ in range(8)]
         else:
             raise TypeError(f'Expected BoardStorage or None, got {type(data).__name__}')
 
     def getClone(self):
         return BoardStorage(self)
 
-    def __getitem__(self,square:Square):
+    def __getitem__(self,square:Square) -> I_Figure:
         if isinstance(square, Square):
             return self._matr[square.x][square.y]
         return NotImplemented
 
-    def __setitem__(self,square, figure):
+    def __setitem__(self,square, figure: I_Figure):
         if isinstance(square, Square) and isinstance(figure, I_Figure) :
             self._matr[square.x][square.y] = figure
         return NotImplemented
