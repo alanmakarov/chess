@@ -18,13 +18,14 @@ class BoardStorage:
     def __getitem__(self,square:Square) -> I_Figure:
         if isinstance(square, Square):
             return self._matr[square.x][square.y]
-        return NotImplemented
+        else:
+            raise TypeError()
 
     def __setitem__(self,square, figure: I_Figure):
-        if isinstance(square, Square) and isinstance(figure, I_Figure) :
+        if isinstance(square, Square) and (figure is None or isinstance(figure, I_Figure)) :
             self._matr[square.x][square.y] = figure
-        return NotImplemented
-
+        else:
+            raise TypeError()
 
     def get_line(self, start: Square, stop: Square) -> list :
         if start.x == stop.x :

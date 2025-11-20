@@ -28,16 +28,20 @@ class TestBoardStorage(unittest.TestCase):
         self.assertNotEqual(clone_board, self.board)
 
         clone_board[Square("e3")] = None
-        self.assertNotEqual(clone_board[Square("e3"),self.board[Square("e3")]])
+        self.assertNotEqual(clone_board[Square("e3")],self.board[Square("e3")])
+
+        clone_board[Square("e2")] = MocFigure(Color.WHITE)
+        self.assertNotEqual(clone_board[Square("e2")],self.board[Square("e2")])
 
     def test_figureCloned(self):
         clone_board = self.board.getClone()
         clone_board[Square("e2")].value = 2
        
-        fg1 = self.board[Square("e2")]
+        fg1 = clone_board[Square("e2")]
         fg2 = self.board[Square("e2")]
         self.assertNotEqual(fg1.value, fg2.value)
 
-
+    def test_get(self):
+        self.board.get_diag(Square("e1"),Square("e7"))
 
 unittest.main()
