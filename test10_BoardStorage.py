@@ -20,7 +20,9 @@ class TestBoardStorage(unittest.TestCase):
     def setUp(self) -> None:
         self.board = BoardStorage()
         self.board[Square("e2")] = MocFigure(Color.BLACK)
-        self.board[Square("e3")] = MocFigure(Color.BLACK)
+        self.board[Square("e3")] = MocFigure(Color.WHITE)
+        self.board[Square("d3")] = MocFigure(Color.WHITE)
+        self.board[Square("b5")] = MocFigure(Color.BLACK)
        
 
     def test_BoardClonned(self):
@@ -41,7 +43,20 @@ class TestBoardStorage(unittest.TestCase):
         fg2 = self.board[Square("e2")]
         self.assertNotEqual(fg1.value, fg2.value)
 
-    def test_get(self):
-        self.board.get_diag(Square("e1"),Square("e7"))
+    def test_get_line(self):
+        res = self.board.get_line(Square("e1"),Square("e7"))
+        num = sum(1 for item in res if isinstance(item,I_Figure))
+        num2 = sum(1 for item in res if isinstance(item,I_Figure) and item.Color == Color.WHITE)
+        self.assertEqual(num,2)
+        self.assertEqual(num2,1)
+
+    def test_get_diag(self):
+        res = self.board.get_diag(Square("f1"),Square("a6"))
+        res2 = self.board.get_diag(Square("f1"),Square("c4"))
+        num = sum(1 for item in res if isinstance(item,I_Figure))
+        num2 = sum(1 for item in res2 if isinstance(item,I_Figure))
+        self.assertEqual(num,3)
+        self.assertEqual(num2,2)
+
 
 unittest.main()
