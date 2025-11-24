@@ -58,5 +58,15 @@ class TestBoardStorage(unittest.TestCase):
         self.assertEqual(num,3)
         self.assertEqual(num2,2)
 
+    def test_get_kingSquare(self):
+        pass
+
+    def test_get_occupied_coordinates(self):
+        self.board[Square("g5")] = MocFigure(Color.BLACK)
+        res_black = self.board.get_occupied_coordinates(Color.BLACK)
+        res_white = self.board.get_occupied_coordinates(Color.WHITE)
+        self.assertEqual(res_black.count(),3)
+        self.assertEqual(res_white.count(),2)
+
 
 unittest.main()

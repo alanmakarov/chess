@@ -71,4 +71,8 @@ class BoardStorage:
         raise NotImplemented
 
     def get_occupied_coordinates(self,color: Color) -> list:
-        raise NotImplemented
+        res =[]
+        for row in range(8):
+            for col in range(8):
+                if self._matr[row][col] is not None and self._matr[row][col].Color == color:
+                    res.append(Square(row,col))
