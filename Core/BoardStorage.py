@@ -1,7 +1,9 @@
+import re
 from Core.Color import Color
 from Core.Square import Square
 from Core.Interfaces import I_Figure
 from Figures.Figure import Figure
+from Figures.King import King
 
 class BoardStorage:
     def __init__(self, data = None) -> None:
@@ -68,7 +70,11 @@ class BoardStorage:
         return elements
 
     def get_king_square(self, color: Color)-> Square:
-        raise NotImplemented
+        letters = 'abcdefgh'
+        for row in range(8):
+            for col in range(8):
+                if self._matr[row][col] is not None and self._matr[row][col].Color == color and self._matr[row][col].__class__.__name__ == 'King':
+                    return Square(letters[col]+str(8-row))
 
     def get_occupied_coordinates(self,color: Color) -> list:
         res =[]
@@ -76,4 +82,6 @@ class BoardStorage:
         for row in range(8):
             for col in range(8):
                 if self._matr[row][col] is not None and self._matr[row][col].Color == color:
-                    res.append(Square(letters[col]+str(row+1)))
+                    res.append(Square(letters[col]+str(8-row)))
+
+        return res

@@ -4,6 +4,7 @@ from Core.BoardStorage import BoardStorage
 from Core.Color import Color
 from Core.Square import Square
 from Core.Interfaces import I_Figure, I_MovementContext
+from Figures.King import King
 from Figures.Figure import Figure
 
 class MocFigure(Figure):
@@ -59,14 +60,20 @@ class TestBoardStorage(unittest.TestCase):
         self.assertEqual(num2,2)
 
     def test_get_kingSquare(self):
-        pass
+        self.board[Square("g5")] = King(Color.BLACK)
+        self.board[Square("e1")] = King(Color.WHITE)
+
+        res1 = self.board.get_king_square(Color.BLACK)
+        res2 = self.board.get_king_square(Color.WHITE)
+        self.assertEqual(res1,Square("g5"))
+        self.assertEqual(res2,Square("e1"))
 
     def test_get_occupied_coordinates(self):
         self.board[Square("g5")] = MocFigure(Color.BLACK)
         res_black = self.board.get_occupied_coordinates(Color.BLACK)
         res_white = self.board.get_occupied_coordinates(Color.WHITE)
-        self.assertEqual(res_black.count(),3)
-        self.assertEqual(res_white.count(),2)
+        self.assertEqual(len(res_black),3)
+        self.assertEqual(len(res_white),2)
 
 
 unittest.main()
