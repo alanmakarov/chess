@@ -15,8 +15,6 @@ class MocFigure(Figure):
         return True
 
 
-
-
 class TestBoardStorage(unittest.TestCase):
     def setUp(self) -> None:
         self.board = BoardStorage()
@@ -76,4 +74,17 @@ class TestBoardStorage(unittest.TestCase):
         self.assertEqual(len(res_white),2)
 
 
-unittest.main()
+if __name__ == '__main__':
+    loader = unittest.TestLoader()
+    suit = loader.loadTestsFromTestCase(TestBoardStorage)
+    runner = unittest.TextTestRunner(stream=io.StringIO(), verbosity=0)
+    result = runner.run(suit)
+    if not result.wasSuccessful():
+        msgs=[]
+        if len(result.errors) > 0 :
+            for test, traceback in result.errors:
+                msgs.append(f'FAIL: {test.id()}')
+        for test, traceback in result.failures:
+            msgs.append(f'FAIL: {test.id()}')
+        fullmsg= '\n\n'.join(msgs)
+        raise AssertionError(fullmsg)
