@@ -48,12 +48,14 @@ class Figure(I_Figure):
     def Color(self):
         return self.__color
 
+    def __str__(self):
+        return str(self.__color)+"_"+self.__class__.__name__
+
     def copy(self):
         return self.__class__(self.__color)
 
     @abstractmethod
     def isValideMove(self, ctx: I_MovementContext) -> bool: ...
-
     
     def isValideAttack(self, ctx: I_MovementContext) -> bool:
         if ctx.isNewPositionPartnerOccupied():
