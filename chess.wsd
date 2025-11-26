@@ -11,17 +11,29 @@ class Figure {
     + isValideAttack(MovementContext context)
 }
 
-Interface BoardState{
+Interface I_Status{
     + bool is_empty(Square)
     + get_figure(Square)
     + isCheck(Color)
     + isMat()
     + turnColor()
 }
+Interface I_GameBoard{
+    + getBoard() -> list
+    + MakeMove(start:str,end:str) -> (bool,str)
+    + newGame()
+    + getTurn() -> str
+    + getStatus() -> str
+    + SelectFigure(square:str) -> (bool, str)
+    + isSelected() -> bool
+    + getSelectedIndexes() -> (int,int)
+}
 
-class GameBoard extends BoardState {
+class GameBoard extends I_GameBoard, I_Status {
     - board_storage
+    - create_Context(board: BoardStorage)-> I_MovementContext
     + Move(Square start, Square end)
+
 }
 
 class BoardSorage {
@@ -59,7 +71,7 @@ class Square{
 
 
 
-Interface MovementContext{
+Interface I_MovementContext{
  
     + current_position() -> Square
     + new_position() -> Square
