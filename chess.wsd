@@ -20,7 +20,7 @@ Interface I_Status{
 }
 Interface I_GameBoard{
     + getBoard() -> list
-    + MakeMove(start:str,end:str) -> (bool,str)
+    + MakeMove(to_square: str) -> (bool,str)
     + newGame()
     + getTurn() -> str
     + getStatus() -> str
