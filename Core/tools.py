@@ -1,7 +1,7 @@
 from Core.Square import Square
 
 
-def is_path_diagonal(self, start: Square,end: Square) -> bool:
+def is_path_diagonal(start: Square,end: Square) -> bool:
 
     if start == end: 
         return False
@@ -14,7 +14,7 @@ def is_path_diagonal(self, start: Square,end: Square) -> bool:
 
     return False
 
-def is_path_line(self, start: Square, end: Square) -> bool:
+def is_path_line(start: Square, end: Square) -> bool:
 
     if start == end: 
         return False
