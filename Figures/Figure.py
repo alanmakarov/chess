@@ -3,7 +3,7 @@ from Core.Square import Square
 from Core.Interfaces import I_MovementContext
 from Core.Interfaces import I_Figure
 from Core.Color import Color
-
+import Core.tools as tool
 
 class Figure(I_Figure):
     
@@ -12,27 +12,10 @@ class Figure(I_Figure):
         self.__stepsCount = 0
 
     def _is_pass_diagonal(self, start: Square,end: Square) -> bool:
-
-        if start == end: 
-            return False
-
-        if start.ColIndex() - start.RowIndex() == end.ColIndex() - end.RowIndex():
-            return True
-
-        if start.ColIndex() + start.RowIndex() == end.ColIndex() + end.RowIndex():
-            return True
-
-        return False
+        return tool.is_path_diagonal(start,end)
     
     def _is_pass_line(self, start: Square, end: Square) -> bool:
-
-        if start == end: 
-            return False
-
-        if start.ColIndex() == end.ColIndex() or start.RowIndex() == end.RowIndex():
-            return True
-        else :
-            return False
+        return tool.is_path_line(start,end)
 
     def _is_valid_turn(self, ctx: I_MovementContext)-> bool:
         return ctx.turnColor() == self.__color
