@@ -14,7 +14,9 @@ class Square:
         return f'{self.col}{self.row}'
     
     def __eq__(self,other):
-        return self.col == other.col and self.row == other.row
+        if isinstance(other,Square): 
+            return self.col == other.col and self.row == other.row
+        return False
 
     def RowIndex(self):
         return 8-self.row
