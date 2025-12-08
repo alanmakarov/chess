@@ -34,11 +34,6 @@ class Figure(I_Figure):
     def __str__(self):
         return str(self.__color)+"_"+self.__class__.__name__
 
-    def copy(self):
-        cl =  self.__class__(self.__color)
-        cl.__stepsCount = self.__stepsCount
-        return cl
-
     @abstractmethod
     def isValideMove(self, ctx: I_MovementContext) -> bool: ...
     
