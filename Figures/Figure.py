@@ -7,9 +7,9 @@ import Core.tools as tool
 
 class Figure(I_Figure):
     
-    def __init__(self, color : Color):
+    def __init__(self, color : Color, stepsCount = 0):
         self.__color = color
-        self.__stepsCount = 0
+        self.__stepsCount = stepsCount
 
     def _is_pass_diagonal(self, start: Square,end: Square) -> bool:
         return tool.is_path_diagonal(start,end)
@@ -35,7 +35,7 @@ class Figure(I_Figure):
         return str(self.__color)+"_"+self.__class__.__name__
 
     def copy(self):
-        return self.__class__(self.__color)
+        return self.__class__(self.__color, self.__stepsCount)
 
     @abstractmethod
     def isValideMove(self, ctx: I_MovementContext) -> bool: ...
