@@ -8,7 +8,7 @@ from Figures.King import King
 class BoardStorage:
     def __init__(self, data = None) -> None:
         if isinstance(data, BoardStorage):
-            self._matr = [ [ None if el is None else el.copy() for el in row ] for row in data._matr]
+            self._matr = [ [ None if el is None else el for el in row ] for row in data._matr]
         elif data == None:
             self._matr = [[None for _ in range(8)] for _ in range(8)]
         else:
